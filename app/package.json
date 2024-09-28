@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@monaco-editor/react": "^4.6.0"
+    "@monaco-editor/react": "^4.6.0",
+    "flexlayout-react": "^0.8.1"
   },
   "devDependencies": {
     "@types/node": "^16.18.112",
