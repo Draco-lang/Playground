@@ -1,64 +1,53 @@
-import {Layout, Model, TabNode, IJsonModel} from 'flexlayout-react';
-import { Editor, OnMount } from "@monaco-editor/react";
-import { editor } from "monaco-editor";
-import 'flexlayout-react/style/light.css';
+import { Layout, Model, TabNode, IJsonModel } from "flexlayout-react";
+import "flexlayout-react/style/light.css";
+import { MonacoEditor } from "./MonacoEditor";
 
-var layoutDescription : IJsonModel= {
+const layoutDescription: IJsonModel = {
   global: {},
   borders: [],
   layout: {
-      type: "row",
-      weight: 100,
-      children: [
+    type: "row",
+    weight: 100,
+    children: [
+      {
+        type: "tabset",
+        weight: 50,
+        children: [
           {
-              type: "tabset",
-              weight: 50,
-              children: [
-                  {
-                      type: "tab",
-                      name: "One",
-                      component: "editor",
-                  }
-              ]
+            type: "tab",
+            name: "One",
+            component: "editor",
           },
+        ],
+      },
+      {
+        type: "tabset",
+        weight: 50,
+        children: [
           {
-              type: "tabset",
-              weight: 50,
-              children: [
-                  {
-                      type: "tab",
-                      name: "Two",
-                      component: "editor",
-                  }
-              ]
-          }
-      ]
-  }
+            type: "tab",
+            name: "Two",
+            component: "editor",
+          },
+        ],
+      },
+    ],
+  },
 };
 
 const layoutModel = Model.fromJson(layoutDescription);
 
-const editorOnMount: OnMount = (editor, monaco) => {
-  editor.layout();
-};
-
 function App() {
   const componentFactory = (node: TabNode) => {
-    var component = node.getComponent();
-    if (component === "editor") {
-      const options: editor.IStandaloneEditorConstructionOptions = {
-        automaticLayout: false,
-        minimap: {
-          enabled: false,
-        },
-      };
-      return <Editor options={options} onMount={editorOnMount} />;
-    }
-  }
+    const component = node.getComponent();
 
-  return (
-    <Layout model={layoutModel} factory={componentFactory} />
-  );
+    if (component === "editor") {
+      return <MonacoEditor />;
+    }
+    return null;
+  };
+
+  return <Layout model={layoutModel} factory={componentFactory} />;
 }
 
 export default App;
