@@ -17,7 +17,7 @@
     <PackageReference Include="ICSharpCode.Decompiler" Version="8.2.0.7535" ExcludeAssets="contentfiles" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="8.0.0" />
     <PackageReference Include="Microsoft.JSInterop" Version="8.0.1" />
-    <PackageReference Include="Draco.Compiler" Version="0.3.4-pre" />
+    <PackageReference Include="Draco.Compiler" Version="0.4.13-pre" />
   </ItemGroup>
 
   <Target Name="JSSetup" AfterTargets="AfterBuild">
@@ -36,10 +36,7 @@
 
   <ItemGroup>
     <PackageDownload Include="Microsoft.NETCore.App.Ref" Version="[8.0.1]" />
-    <EmbeddedResource Include="$(NuGetPackageRoot)microsoft.netcore.app.ref\8.0.1\ref\net8.0\*.dll"
-                      LogicalName="ReferenceAssembly.%(Filename)%(Extension)"
-                      Visible="false"
-                      Link="Reference Assemblies\%(Filename)%(Extension)" />
+    <EmbeddedResource Include="$(NuGetPackageRoot)microsoft.netcore.app.ref\8.0.1\ref\net8.0\*.dll" LogicalName="ReferenceAssembly.%(Filename)%(Extension)" Visible="false" Link="Reference Assemblies\%(Filename)%(Extension)" />
   </ItemGroup>
 
 </Project>
